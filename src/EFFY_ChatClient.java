@@ -24,15 +24,16 @@ public class EFFY_ChatClient {
           return json.getJSONArray(listName).toString();
      }
 
-     class MyTimerTask extends TimerTask {
-          public void run() {
-               myData.loadJSON(fileName);
-               System.out.println(readMessage());
-          }
-     }
 
      public void loadMessages(){
-          new Timer().schedule(new MyTimerTask(), 0,1000*5);
+          new java.util.Timer().schedule(
+                  new TimerTask() {
+                       public void run() {
+                            myData.loadJSON(fileName);
+                            System.out.println(readMessage());
+                       }
+                  },
+                  0,1000*5 );
      }
 
 
