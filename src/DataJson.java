@@ -14,10 +14,6 @@ public class DataJson {
         this.listName = listName ;
     }
 
-    public String getListName() {
-        return listName;
-    }
-
     public int loadJSON(String fileName) {
         this.fileName = fileName;
         try {
