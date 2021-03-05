@@ -1,5 +1,5 @@
 import org.json.JSONObject;
-import java.util.concurrent.ScheduledExecutorService;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,10 +9,10 @@ public class EFFY_ChatClient {
      private DataJson myData = new DataJson(listName);
      private JSONObject json;
 
+
      public EFFY_ChatClient(){
           myData.loadJSON(fileName);
           json = myData.getJson();
-          loadMessages();
      }
 
      public void writeMessage(String str){
@@ -24,15 +24,16 @@ public class EFFY_ChatClient {
           return json.getJSONArray(listName).toString();
      }
 
+     class MyTimerTask extends TimerTask {
+          public void run() {
+               myData.loadJSON(fileName);
+               System.out.println(readMessage());
+          }
+     }
 
      public void loadMessages(){
-          new java.util.Timer().schedule(
-                  new TimerTask() {
-                       public void run() {
-                            myData.loadJSON(fileName);
-                       }
-                  },
-                  1000 );
+          new Timer().schedule(new MyTimerTask(), 0,1000*5);
      }
+
 
 }
