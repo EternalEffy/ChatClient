@@ -33,7 +33,7 @@ public class EFFY_ChatClient {
                             System.out.println(readMessage());
                        }
                   },
-                  0,1000*5 );
+                  0,1000*8 );
      }
 
 
